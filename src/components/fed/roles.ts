@@ -6,17 +6,24 @@ export const ROLE_LABELS: Record<number, string> = {
 };
 
 export const INVARIANT_HINTS: Record<string, string> = {
-  "INV-01": "Scope violation — this record sits outside your jurisdiction.",
-  "INV-02": "Roster lifecycle violation — the requested transition is not allowed.",
-  "INV-03": "Frozen roster — the squad is locked and cannot be edited.",
-  "INV-04": "Separation of duties — the same officer cannot record and certify.",
-  "INV-05": "Player eligibility failed for this squad.",
-  "INV-06": "Registration window closed or duplicate entry detected.",
-  "INV-08": "Result already certified — use the correction workflow.",
-  "INV-09": "Approval chain broken — the actor is not authorised.",
+  "INV-01": "Geography Integrity — District strictly bound to parent State.",
+  "INV-02": "Scoped RBAC — Action strictly scoped to your administrative jurisdiction.",
+  "INV-03": "Roster Immutability — Squad is frozen; player additions, removals, and attribute mutations are locked.",
+  "INV-04": "Roster Lifecycle — Invalid status transition. Only National Admins can perform emergency unfreeze.",
+  "INV-05": "Player Pathways — Grassroots district must match State territory or active exception required.",
+  "INV-06": "Tournament Compatibility — Only teams with frozen rosters and matching level/sport can register.",
+  "INV-07": "Match Progression — Match status must progress scheduled -> in_progress -> completed.",
+  "INV-08": "Match Result Integrity — Main scorer assignment required, winner derived from scores, and MOM must belong to participating squads.",
+  "INV-09": "Certification Separation — Scorer cannot certify own match. Certified results are immutable (use score correction).",
+  "INV-10": "Audit Chain Integrity — Tamper-evident hash-chain invariant violation.",
 };
 
 export function describeFailure(code: string, message: string): string {
   const hint = INVARIANT_HINTS[code];
-  return hint ? `${code}: ${hint}` : message;
+  if (hint) {
+    // If message contains the code or specific info from trigger, show both cleanly
+    return `${code}: ${message && !message.includes(code) ? message : hint}`;
+  }
+  return message || "Database rejected the operation.";
 }
+

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <radialGradient id="stadiumLights" cx="50%" cy="10%" r="70%">
+      <stop offset="0%" stop-color="#065f46" stop-opacity="0.4"/>
+      <stop offset="40%" stop-color="#022c22" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#020617" stop-opacity="0.95"/>
+    </radialGradient>
+    <linearGradient id="beamL" x1="0%" y1="0%" x2="60%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#022c22" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="beamR" x1="100%" y1="0%" x2="40%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#022c22" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="stadiumCourtGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(52,211,153,0.05)" stroke-width="1.5"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="#030712"/>
+  <rect width="1920" height="1080" fill="url(#stadiumLights)"/>
+  <polygon points="100,0 800,1080 0,1080" fill="url(#beamL)"/>
+  <polygon points="1820,0 1120,1080 1920,1080" fill="url(#beamR)"/>
+  <g transform="perspective(600) rotateX(45) translate(0, 400)">
+    <rect x="200" y="200" width="1520" height="600" fill="none" stroke="rgba(52,211,153,0.2)" stroke-width="3"/>
+    <line x1="960" y1="200" x2="960" y2="800" stroke="#f59e0b" stroke-width="4" stroke-dasharray="10,10"/>
+    <circle cx="960" cy="500" r="140" fill="none" stroke="rgba(245,158,11,0.3)" stroke-width="3"/>
+    <rect x="200" y="200" width="1520" height="600" fill="url(#stadiumCourtGrid)"/>
+  </g>
+  <circle cx="960" cy="380" r="300" fill="none" stroke="rgba(16,185,129,0.06)" stroke-width="60"/>
+  <circle cx="960" cy="380" r="200" fill="none" stroke="rgba(245,158,11,0.08)" stroke-width="2"/>
+</svg>

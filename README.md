@@ -118,17 +118,14 @@ All state transitions, approvals, score entries, and registrations MUST invoke t
 
 The database enforces strict zero-trust triggers. Catch `SQLSTATE '45000'` exceptions and render user-friendly toast messages displaying the returned invariant code (e.g., `INV-01`, `INV-02`, `INV-03`, `INV-04`, `INV-05`, `INV-06`, `INV-08`, `INV-09`).
 
-This project was built with [Lovable](https://lovable.dev).
+---
 
-**Live app**: https://federate-play-hub.lovable.app
+### 6. RAJASTHAN SEPAK TAKRAW ASSOCIATION (RSTA)
 
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/5803f733-3135-4acd-ba45-6cb9abc6b430).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+Official state portal governing Sepak Takraw (Regu, Doubles, Team Event) and Aatya Paatya (Traditional Indigenous Discipline).
+- **Headquarters**: Sawai Mansingh (SMS) Stadium, Jaipur, Rajasthan 302005.
+- **Affiliation**: Sepaktakraw Federation of India (STFI) & Rajasthan State Sports Council (RSSC).
+- **Executive Leadership**: Presided over by Shri T. K. Singh (NIS Coach) and Head Coach Jagdish Prajapat.
 
 ## Development
 

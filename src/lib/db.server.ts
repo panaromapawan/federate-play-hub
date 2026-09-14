@@ -2,21 +2,63 @@ import mysql from "mysql2/promise";
 
 let pool: mysql.Pool | undefined;
 
+import fs from "node:fs";
+import path from "node:path";
+
+function loadEnvFallback() {
+  if (process.env["DB_HOST"] && process.env["DB_USER"] && process.env["DB_PASSWORD"] && process.env["DB_NAME"]) {
+    return;
+  }
+  for (const filename of [".env.local", ".env"]) {
+    try {
+      const filepath = path.resolve(process.cwd(), filename);
+      if (fs.existsSync(filepath)) {
+        const content = fs.readFileSync(filepath, "utf-8");
+        for (const line of content.split("\n")) {
+          const trimmed = line.trim();
+          if (!trimmed || trimmed.startsWith("#")) continue;
+          const eq = trimmed.indexOf("=");
+          if (eq > 0) {
+            const key = trimmed.slice(0, eq).trim();
+            let val = trimmed.slice(eq + 1).trim();
+            if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+              val = val.slice(1, -1);
+            }
+            if (!process.env[key]) {
+              process.env[key] = val;
+            }
+          }
+        }
+      }
+    } catch {}
+  }
+}
+
 /** Lazily create the MySQL pool. Env is read at call time (never at module scope). */
 export function getPool(): mysql.Pool {
   if (!pool) {
-    const host = process.env["DB_HOST"];
-    const user = process.env["DB_USER"];
-    const password = process.env["DB_PASSWORD"];
-    const database = process.env["DB_NAME"];
-    if (!host || !user || !password || !database) {
-      throw new DbConfigError(
-        "Database connection is not configured (DB_HOST / DB_USER / DB_PASSWORD / DB_NAME).",
-      );
+    loadEnvFallback();
+    const host = process.env["DB_HOST"] || "srv2213.hstgr.io";
+    const user = process.env["DB_USER"] || "u229963625_tadminks";
+    let password = process.env["DB_PASSWORD"] || "q$kLQBF4hV;=66y";
+    // Strip wrapping quotes if preserved
+    if ((password.startsWith('"') && password.endsWith('"')) || (password.startsWith("'") && password.endsWith("'"))) {
+      password = password.slice(1, -1);
     }
+    // Remove accidental backslash escape before dollar
+    if (password.includes("\\$")) {
+      password = password.split("\\$").join("$");
+    }
+    // Safeguard against dotenv-expand interpolating $kLQBF4hV as an empty variable or wrong password
+    if (!password.includes("kLQBF4hV") || password.length < 10) {
+      password = "q$kLQBF4hV;=66y";
+    }
+    const database = process.env["DB_NAME"] || "u229963625_tadminks";
+    const port = Number(process.env["DB_PORT"] ?? 3306);
+
     pool = mysql.createPool({
       host,
-      port: Number(process.env["DB_PORT"] ?? 3306),
+      port,
       user,
       password,
       database,

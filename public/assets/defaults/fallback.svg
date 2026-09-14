@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1329"/>
+      <stop offset="50%" stop-color="#040711"/>
+      <stop offset="100%" stop-color="#064e3b"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+  <circle cx="400" cy="250" r="140" fill="none" stroke="rgba(16,185,129,0.15)" stroke-width="2"/>
+  <circle cx="400" cy="250" r="100" fill="rgba(16,185,129,0.08)"/>
+  <g transform="translate(360, 210) scale(0.8)">
+    <path d="M50 0 L93 25 L93 75 L50 100 L7 75 L7 25 Z" fill="none" stroke="url(#goldGrad)" stroke-width="4"/>
+    <path d="M50 20 L75 35 L75 65 L50 80 L25 65 L25 35 Z" fill="rgba(245,158,11,0.2)" stroke="#f59e0b" stroke-width="2"/>
+    <circle cx="50" cy="50" r="12" fill="#10b981"/>
+  </g>
+  <text x="400" y="390" text-anchor="middle" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" letter-spacing="3">RAJASTHAN SEPAK TAKRAW ASSOCIATION</text>
+  <text x="400" y="420" text-anchor="middle" fill="#10b981" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" letter-spacing="2">OFFICIAL FEDERATION MEDIA ASSET</text>
+  <text x="400" y="450" text-anchor="middle" fill="#64748b" font-family="system-ui, -apple-system, sans-serif" font-size="11">Sawai Mansingh Stadium • Jaipur</text>
+</svg>

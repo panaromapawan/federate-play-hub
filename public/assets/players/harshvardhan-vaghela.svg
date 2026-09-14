@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="pBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1329"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#pBg)"/>
+  <circle cx="200" cy="160" r="80" fill="rgba(16,185,129,0.1)" stroke="#10b981" stroke-width="2"/>
+  <circle cx="200" cy="140" r="45" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+  <path d="M140 230 C140 185, 260 185, 260 230 Z" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+  <circle cx="200" cy="140" r="22" fill="#10b981" fill-opacity="0.2"/>
+  <text x="200" y="148" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="20" font-weight="800">#9</text>
+  <text x="200" y="290" text-anchor="middle" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="20" font-weight="800">Harshvardhan Vaghela</text>
+  <text x="200" y="320" text-anchor="middle" fill="#10b981" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Tekong (Server)</text>
+  <text x="200" y="350" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">RAJASTHAN SEPAK TAKRAW</text>
+</svg>

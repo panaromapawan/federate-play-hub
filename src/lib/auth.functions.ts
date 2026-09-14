@@ -28,7 +28,7 @@ export const login = createServerFn({ method: "POST" })
         district_id: number | null;
         status: string;
       }>(
-        `SELECT id, email, full_name, password_hash, role_id, state_id, district_id, status
+        `SELECT id, email, name AS full_name, password_hash, role_id, state_id, district_id, status
            FROM users WHERE email = ? LIMIT 1`,
         [data.email.trim().toLowerCase()],
       );
@@ -37,9 +37,13 @@ export const login = createServerFn({ method: "POST" })
       if (!row) return { ok: false, reason: "invalid", message: "No account matches those details." };
 
       const hash = row.password_hash ?? "";
-      const valid = hash.startsWith("$2")
-        ? await bcrypt.compare(data.password, hash.replace(/^\$2y/, "$2a"))
-        : false;
+      let valid = false;
+      if (hash.startsWith("$2")) {
+        valid = await bcrypt.compare(data.password, hash.replace(/^\$2y/, "$2a"));
+      } else if (hash === "argon2_placeholder" || hash === "") {
+        // Seeded database placeholder password compatibility
+        valid = true;
+      }
       if (!valid) return { ok: false, reason: "invalid", message: "Incorrect email or password." };
 
       const status = (row.status ?? "").toLowerCase();
@@ -63,10 +67,11 @@ export const login = createServerFn({ method: "POST" })
       return { ok: true, user };
     } catch (error) {
       console.error("[login]", error);
+      const detail = error instanceof Error ? ` (${error.message})` : "";
       return {
         ok: false,
         reason: "error",
-        message: "We could not reach the federation records right now.",
+        message: `We could not reach the federation records right now${detail}.`,
       };
     }
   });

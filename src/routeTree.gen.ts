@@ -10,33 +10,171 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthedRouteImport } from './routes/_authed'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as CompetitionsRouteImport } from './routes/competitions'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as GovernanceRouteImport } from './routes/governance'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as AuthedAdminDistrictRouteImport } from './routes/_authed/admin/district'
+import { Route as AuthedAdminNationalRouteImport } from './routes/_authed/admin/national'
+import { Route as AuthedAdminStateRouteImport } from './routes/_authed/admin/state'
+import { Route as AuthedOfficialConsoleRouteImport } from './routes/_authed/official/console'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthedRoute = AuthedRouteImport.update({
+  id: '/_authed',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompetitionsRoute = CompetitionsRouteImport.update({
+  id: '/competitions',
+  path: '/competitions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GovernanceRoute = GovernanceRouteImport.update({
+  id: '/governance',
+  path: '/governance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthedAdminDistrictRoute = AuthedAdminDistrictRouteImport.update({
+  id: '/admin/district',
+  path: '/admin/district',
+  getParentRoute: () => AuthedRoute,
+} as any)
+const AuthedAdminNationalRoute = AuthedAdminNationalRouteImport.update({
+  id: '/admin/national',
+  path: '/admin/national',
+  getParentRoute: () => AuthedRoute,
+} as any)
+const AuthedAdminStateRoute = AuthedAdminStateRouteImport.update({
+  id: '/admin/state',
+  path: '/admin/state',
+  getParentRoute: () => AuthedRoute,
+} as any)
+const AuthedOfficialConsoleRoute = AuthedOfficialConsoleRouteImport.update({
+  id: '/official/console',
+  path: '/official/console',
+  getParentRoute: () => AuthedRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/competitions': typeof CompetitionsRoute
+  '/contact': typeof ContactRoute
+  '/governance': typeof GovernanceRoute
+  '/login': typeof LoginRoute
+  '/admin/district': typeof AuthedAdminDistrictRoute
+  '/admin/national': typeof AuthedAdminNationalRoute
+  '/admin/state': typeof AuthedAdminStateRoute
+  '/official/console': typeof AuthedOfficialConsoleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/competitions': typeof CompetitionsRoute
+  '/contact': typeof ContactRoute
+  '/governance': typeof GovernanceRoute
+  '/login': typeof LoginRoute
+  '/admin/district': typeof AuthedAdminDistrictRoute
+  '/admin/national': typeof AuthedAdminNationalRoute
+  '/admin/state': typeof AuthedAdminStateRoute
+  '/official/console': typeof AuthedOfficialConsoleRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authed': typeof AuthedRouteWithChildren
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/competitions': typeof CompetitionsRoute
+  '/contact': typeof ContactRoute
+  '/governance': typeof GovernanceRoute
+  '/login': typeof LoginRoute
+  '/_authed/admin/district': typeof AuthedAdminDistrictRoute
+  '/_authed/admin/national': typeof AuthedAdminNationalRoute
+  '/_authed/admin/state': typeof AuthedAdminStateRoute
+  '/_authed/official/console': typeof AuthedOfficialConsoleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/competitions'
+    | '/contact'
+    | '/governance'
+    | '/login'
+    | '/admin/district'
+    | '/admin/national'
+    | '/admin/state'
+    | '/official/console'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/competitions'
+    | '/contact'
+    | '/governance'
+    | '/login'
+    | '/admin/district'
+    | '/admin/national'
+    | '/admin/state'
+    | '/official/console'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authed'
+    | '/about'
+    | '/auth'
+    | '/competitions'
+    | '/contact'
+    | '/governance'
+    | '/login'
+    | '/_authed/admin/district'
+    | '/_authed/admin/national'
+    | '/_authed/admin/state'
+    | '/_authed/official/console'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthedRoute: typeof AuthedRouteWithChildren
+  AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRoute
+  CompetitionsRoute: typeof CompetitionsRoute
+  ContactRoute: typeof ContactRoute
+  GovernanceRoute: typeof GovernanceRoute
+  LoginRoute: typeof LoginRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +186,112 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authed': {
+      id: '/_authed'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/competitions': {
+      id: '/competitions'
+      path: '/competitions'
+      fullPath: '/competitions'
+      preLoaderRoute: typeof CompetitionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/governance': {
+      id: '/governance'
+      path: '/governance'
+      fullPath: '/governance'
+      preLoaderRoute: typeof GovernanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authed/admin/district': {
+      id: '/_authed/admin/district'
+      path: '/admin/district'
+      fullPath: '/admin/district'
+      preLoaderRoute: typeof AuthedAdminDistrictRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/admin/national': {
+      id: '/_authed/admin/national'
+      path: '/admin/national'
+      fullPath: '/admin/national'
+      preLoaderRoute: typeof AuthedAdminNationalRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/admin/state': {
+      id: '/_authed/admin/state'
+      path: '/admin/state'
+      fullPath: '/admin/state'
+      preLoaderRoute: typeof AuthedAdminStateRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/official/console': {
+      id: '/_authed/official/console'
+      path: '/official/console'
+      fullPath: '/official/console'
+      preLoaderRoute: typeof AuthedOfficialConsoleRouteImport
+      parentRoute: typeof AuthedRoute
+    }
   }
 }
 
+interface AuthedRouteChildren {
+  AuthedAdminDistrictRoute: typeof AuthedAdminDistrictRoute
+  AuthedAdminNationalRoute: typeof AuthedAdminNationalRoute
+  AuthedAdminStateRoute: typeof AuthedAdminStateRoute
+  AuthedOfficialConsoleRoute: typeof AuthedOfficialConsoleRoute
+}
+
+const AuthedRouteChildren: AuthedRouteChildren = {
+  AuthedAdminDistrictRoute: AuthedAdminDistrictRoute,
+  AuthedAdminNationalRoute: AuthedAdminNationalRoute,
+  AuthedAdminStateRoute: AuthedAdminStateRoute,
+  AuthedOfficialConsoleRoute: AuthedOfficialConsoleRoute,
+}
+
+const AuthedRouteWithChildren =
+  AuthedRoute._addFileChildren(AuthedRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthedRoute: AuthedRouteWithChildren,
+  AboutRoute: AboutRoute,
+  AuthRoute: AuthRoute,
+  CompetitionsRoute: CompetitionsRoute,
+  ContactRoute: ContactRoute,
+  GovernanceRoute: GovernanceRoute,
+  LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
