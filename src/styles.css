@@ -145,3 +145,158 @@
   text-transform: uppercase;
   color: var(--muted-foreground);
 }
+
+/* Public homepage — Royal Apex light editorial theme. Scoped so operational
+   consoles and authenticated dashboards retain their existing appearance. */
+.public-home-light {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --primary: #1e3a8a;
+  --primary-foreground: #ffffff;
+  --secondary: #eef2f7;
+  --secondary-foreground: #1e3a8a;
+  --muted: #f1f5f9;
+  --muted-foreground: #5b677a;
+  --accent: #d97706;
+  --accent-foreground: #ffffff;
+  --success: #059669;
+  --success-foreground: #ffffff;
+  --border: #e2e8f0;
+  --input: #cbd5e1;
+  --ring: #1e3a8a;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+.public-home-light h1,
+.public-home-light h2,
+.public-home-light h3,
+.public-home-light h4 {
+  font-family: "Libre Baskerville", ui-serif, Georgia, serif;
+  letter-spacing: 0;
+}
+
+.public-home-light .home-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgb(248 250 252 / 0.98) 0%, rgb(248 250 252 / 0.91) 48%, rgb(248 250 252 / 0.3) 100%);
+}
+
+.public-home-light section,
+.public-home-light footer,
+.public-home-light header {
+  border-color: var(--border) !important;
+}
+
+.public-home-light section:not(.home-hero),
+.public-home-light footer,
+.public-home-light header,
+.public-home-light [class*="bg-slate-9"],
+.public-home-light [class*="bg-emerald-9"] {
+  background-color: var(--background) !important;
+  background-image: none !important;
+}
+
+.public-home-light [class*="bg-slate-8"] {
+  background-color: var(--secondary) !important;
+}
+
+.public-home-light [class*="border-slate-"],
+.public-home-light [class*="border-emerald-9"],
+.public-home-light [class*="border-emerald-8"] {
+  border-color: var(--border) !important;
+}
+
+.public-home-light [class*="text-white"],
+.public-home-light [class*="text-slate-1"],
+.public-home-light [class*="text-slate-2"],
+.public-home-light [class*="text-slate-3"] {
+  color: var(--foreground) !important;
+}
+
+.public-home-light [class*="text-slate-4"],
+.public-home-light [class*="text-slate-5"] {
+  color: var(--muted-foreground) !important;
+}
+
+.public-home-light [class*="text-emerald-3"],
+.public-home-light [class*="text-emerald-4"] {
+  color: var(--success) !important;
+}
+
+.public-home-light [class*="text-amber-3"],
+.public-home-light [class*="text-amber-4"] {
+  color: var(--accent) !important;
+}
+
+.public-home-light [data-slot="card"],
+.public-home-light .rounded-2xl {
+  border-color: var(--border) !important;
+  border-radius: 0.5rem !important;
+  background: var(--card) !important;
+  box-shadow: 0 8px 24px rgb(15 23 42 / 0.07) !important;
+}
+
+.public-home-light [data-slot="badge"] {
+  box-shadow: none !important;
+}
+
+.public-home-light section[id] {
+  position: relative;
+}
+
+.public-home-light section[id] > div {
+  animation: editorial-rise 0.65s ease-out both;
+}
+
+.public-home-light a,
+.public-home-light button {
+  transition-duration: 200ms;
+}
+
+.public-home-light a:hover {
+  color: var(--primary);
+}
+
+.animate-editorial-rise {
+  animation: editorial-rise 0.65s ease-out both;
+}
+
+.animation-delay-150 {
+  animation-delay: 150ms;
+}
+
+@keyframes editorial-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 767px) {
+  .public-home-light .home-hero::before {
+    background: rgb(248 250 252 / 0.9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .public-home-light *,
+  .public-home-light *::before,
+  .public-home-light *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

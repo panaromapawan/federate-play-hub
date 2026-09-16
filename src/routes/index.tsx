@@ -46,6 +46,22 @@ import { SafeImage } from "@/components/common/SafeImage";
 import { SEOHead } from "@/components/common/SEOHead";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Rajasthan Sepak Takraw Association | Official RSTA" },
+      {
+        name: "description",
+        content: "Official RSTA portal for Sepak Takraw and Aatya Paatya results, fixtures, leadership, districts, circulars, and rulebooks.",
+      },
+      { property: "og:title", content: "Rajasthan Sepak Takraw Association" },
+      {
+        property: "og:description",
+        content: "Official results, competitions, leadership, circulars, and rulebooks from Rajasthan's state federation.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: PublicPortalPage,
 });
 
@@ -60,7 +76,7 @@ function RstaCrest({ code, name, color = "amber" }: { code: string; name: string
   };
 
   return (
-    <div className={`size-12 rounded-xl bg-gradient-to-b ${colorMap[color]} border flex flex-col items-center justify-center font-black shadow-md shrink-0`}>
+    <div className={`size-12 rounded-md bg-gradient-to-b ${colorMap[color]} border flex flex-col items-center justify-center font-black shadow-sm shrink-0`}>
       <span className="text-[9px] tracking-wider opacity-80">RSTA</span>
       <span className="text-xs tracking-tight font-mono leading-none font-bold">{code}</span>
     </div>
@@ -166,26 +182,26 @@ export function PublicPortalPage() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 selection:bg-emerald-500 selection:text-black">
+    <div className="public-home-light min-h-screen flex flex-col bg-background text-foreground selection:bg-accent selection:text-accent-foreground">
       <SEOHead />
       <PublicNav />
 
       {/* 1. HERO BROADCAST STAGE */}
-      <section className="relative overflow-hidden border-b border-emerald-950/80 bg-slate-950">
+      <section className="home-hero relative overflow-hidden border-b border-border bg-background">
         <div className="absolute inset-0 z-0">
           <SafeImage
             src={settings?.hero_bg_image || "/assets/hero/stadium-arena.jpg"}
             alt="Sepak Takraw Championship Arena"
-            className="w-full h-full object-cover object-center opacity-40 scale-105"
+            className="w-full h-full object-cover object-center opacity-100 scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/75 to-slate-950/85" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(16,185,129,0.2),rgba(0,0,0,0.35))]" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Headline */}
-            <div className="lg:col-span-7 space-y-6">
+            <div className="lg:col-span-7 space-y-6 animate-editorial-rise">
               <div className="flex flex-wrap items-center gap-2.5">
                 <Badge className="bg-emerald-950 text-emerald-300 border-emerald-700/60 font-semibold px-3 py-1 text-xs gap-1.5 shadow-sm">
                   <FederationCrest className="size-3.5" />
@@ -197,17 +213,15 @@ export function PublicPortalPage() {
               </div>
 
               <div className="space-y-3">
-                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-[1.08] font-sans">
+                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-[1.08] font-display">
                   {settings?.hero_title ? (
                     <>
                       <span>{settings.hero_title}</span>
                     </>
                   ) : (
                     <>
-                      RAJASTHAN SEPAK TAKRAW <br />
-                      <span className="bg-gradient-to-r from-amber-400 via-emerald-300 to-teal-200 bg-clip-text text-transparent">
-                        ASSOCIATION (RSTA)
-                      </span>
+                      Rajasthan Sepak Takraw <br />
+                      <span className="text-primary">Association (RSTA)</span>
                     </>
                   )}
                 </h1>
@@ -248,7 +262,7 @@ export function PublicPortalPage() {
             </div>
 
             {/* Right: Featured Hero Dispatch Card */}
-            <div className="lg:col-span-5">
+            <div className="lg:col-span-5 animate-editorial-rise animation-delay-150">
               <Card className="overflow-hidden border-emerald-900/50 bg-slate-900/90 shadow-2xl backdrop-blur group">
                 <div className="relative h-56 sm:h-64 overflow-hidden">
                   <SafeImage
