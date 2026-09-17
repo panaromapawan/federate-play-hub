@@ -91,27 +91,27 @@ export function PublicNav() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full backdrop-blur-xl bg-slate-950/90 border-b border-emerald-950/60 shadow-2xl">
+    <header className="sticky top-0 z-50 w-full backdrop-blur-xl bg-background/95 border-b border-border shadow-sm">
       {/* 1. TOP ANNOUNCEMENT TICKER */}
-      <div className="bg-gradient-to-r from-emerald-950 via-slate-950 to-emerald-950 border-b border-emerald-900/40 text-xs py-1.5 px-4 sm:px-6">
+      <div className="bg-primary text-primary-foreground border-b border-border text-xs py-1.5 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2 overflow-hidden">
-            <span className="flex items-center gap-1 text-emerald-400 font-bold uppercase tracking-wider text-[11px] shrink-0">
-              <Radio className="size-3 text-emerald-400 animate-pulse" /> RSTA Official Dispatch:
+            <span className="flex items-center gap-1 text-primary-foreground font-bold uppercase tracking-wider text-[11px] shrink-0">
+              <Radio className="size-3 text-primary-foreground animate-pulse" /> RSTA Official Dispatch:
             </span>
-            <span className="text-slate-300 font-medium truncate text-[11px]">
+            <span className="text-primary-foreground/85 font-medium truncate text-[11px]">
               National Sepak Takraw Regu 2026: Rajasthan 61 - 56 Gujarat (Certified INV-09) • Presided by Shri T. K. Singh (NIS) · Head Coach Jagdish Prajapat
             </span>
           </div>
 
           <div className="flex items-center gap-3 shrink-0 ml-auto text-[11px]">
-            <span className="hidden sm:inline-flex items-center gap-1.5 text-slate-400">
-              <Lock className="size-3 text-emerald-400" /> STFI & RSSC Sanctioned State Body
+            <span className="hidden sm:inline-flex items-center gap-1.5 text-primary-foreground/80">
+              <Lock className="size-3 text-primary-foreground" /> STFI & RSSC Sanctioned State Body
             </span>
-            <span className="text-slate-600 hidden sm:inline">•</span>
+            <span className="text-primary-foreground/50 hidden sm:inline">•</span>
             <Link
               to="/auth"
-              className="text-amber-400 hover:text-amber-300 font-semibold flex items-center gap-1 transition-colors"
+              className="text-primary-foreground font-semibold underline underline-offset-4 flex items-center gap-1 transition-colors hover:opacity-80"
             >
               Sign In to Portal <ChevronRight className="size-3" />
             </Link>
@@ -127,17 +127,17 @@ export function PublicNav() {
             <FederationCrest className="size-11 sm:size-12 group-hover:scale-105 transition-transform" />
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
-                <span className="text-lg sm:text-xl font-black tracking-tight text-white font-mono uppercase">
+                <span className="text-lg sm:text-xl font-black tracking-tight text-foreground font-mono uppercase">
                   RSTA
                 </span>
-                <span className="text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800/60 hidden sm:inline-block">
+                <span className="text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded bg-accent/10 text-accent border border-accent/30 hidden sm:inline-block">
                   Apex State Body · STFI
                 </span>
               </div>
-              <span className="text-xs sm:text-sm font-extrabold text-slate-200 tracking-tight leading-none group-hover:text-emerald-400 transition-colors">
+              <span className="text-xs sm:text-sm font-extrabold text-primary tracking-tight leading-none group-hover:text-accent transition-colors">
                 Rajasthan Sepak Takraw Association
               </span>
-              <span className="text-[10px] text-slate-400 font-medium hidden md:inline-block">
+              <span className="text-[10px] text-muted-foreground font-medium hidden md:inline-block">
                 Sepak Takraw & Aatya Paatya · Sawai Mansingh Stadium, Jaipur
               </span>
             </div>
@@ -149,8 +149,8 @@ export function PublicNav() {
               const isActive = location.pathname === link.href;
               const className = `px-3 py-2 rounded-md text-xs font-semibold tracking-wide transition-all ${
                 isActive
-                  ? "text-emerald-400 bg-emerald-950/60 border border-emerald-800/50"
-                  : "text-slate-300 hover:text-white hover:bg-slate-900/80"
+                  ? "text-primary bg-secondary border border-border"
+                  : "text-foreground hover:text-primary hover:bg-secondary/70"
               }`;
               if (link.href.includes("#")) {
                 return (
@@ -176,9 +176,9 @@ export function PublicNav() {
             <Link to="/auth">
               <Button
                 size="sm"
-                className="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-black shadow-lg shadow-emerald-900/40 text-xs px-4 border border-emerald-400/30 gap-1.5"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold shadow-sm text-xs px-4 gap-1.5"
               >
-                <Shield className="size-3.5 text-slate-950" /> Federation Portal
+                <Shield className="size-3.5" /> Federation Portal
               </Button>
             </Link>
           </div>
@@ -187,7 +187,7 @@ export function PublicNav() {
           <div className="flex xl:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-900 focus:outline-none"
+              className="p-2 rounded-md text-foreground hover:text-primary hover:bg-secondary focus:outline-none"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
@@ -198,10 +198,10 @@ export function PublicNav() {
 
       {/* 3. MOBILE MENU DROPDOWN */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-slate-950/95 border-b border-emerald-950 px-4 pt-2 pb-6 space-y-2 animate-in slide-in-from-top-2 duration-200">
+        <div className="xl:hidden bg-background border-b border-border px-4 pt-2 pb-6 space-y-2 animate-in slide-in-from-top-2 duration-200">
           <div className="space-y-1">
             {navLinks.map((link) => {
-              const className = "block px-3 py-2.5 rounded-md text-sm font-medium text-slate-200 hover:text-emerald-400 hover:bg-slate-900";
+              const className = "block px-3 py-2.5 rounded-md text-sm font-medium text-foreground hover:text-primary hover:bg-secondary";
               if (link.href.includes("#")) {
                 return (
                   <a
@@ -227,9 +227,9 @@ export function PublicNav() {
             })}
           </div>
 
-          <div className="pt-3 border-t border-slate-800 flex flex-col gap-2">
+          <div className="pt-3 border-t border-border flex flex-col gap-2">
             <Link to="/auth" onClick={() => setMobileMenuOpen(false)}>
-              <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold gap-2 text-xs">
+              <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold gap-2 text-xs">
                 <Shield className="size-4" /> Sign In to Federation Portal
               </Button>
             </Link>
