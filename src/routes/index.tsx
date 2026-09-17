@@ -249,13 +249,13 @@ export function PublicPortalPage() {
 
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link to="/auth">
-                  <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-black px-6 gap-2 text-sm shadow-xl shadow-emerald-950 border border-emerald-400/40">
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-6 gap-2 text-sm shadow-md">
                     <Shield className="size-4" /> {settings?.hero_cta_primary_text || "Official Federation Portal"}
                   </Button>
                 </Link>
                 <Link to="/competitions">
-                  <Button size="lg" variant="outline" className="border-slate-700 bg-slate-900/80 hover:bg-slate-800 text-slate-200 text-sm font-bold gap-2">
-                    <Trophy className="size-4 text-amber-400" /> State Championship Arena
+                  <Button size="lg" variant="outline" className="border-border bg-card hover:bg-secondary text-foreground text-sm font-bold gap-2">
+                    <Trophy className="size-4 text-accent" /> State Championship Arena
                   </Button>
                 </Link>
               </div>
@@ -263,14 +263,14 @@ export function PublicPortalPage() {
 
             {/* Right: Featured Hero Dispatch Card */}
             <div className="lg:col-span-5 animate-editorial-rise animation-delay-150">
-              <Card className="overflow-hidden border-emerald-900/50 bg-slate-900/90 shadow-2xl backdrop-blur group">
+              <Card className="overflow-hidden border-border bg-card shadow-md group">
                 <div className="relative h-56 sm:h-64 overflow-hidden">
                   <SafeImage
                     src={heroNews.image_url || "/assets/news/gold-medal.jpg"}
                     alt="RSTA Match Action"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/75 via-foreground/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/85 via-[#0f172a]/25 to-transparent" />
                   <div className="absolute top-3 left-3 flex items-center gap-2">
                     <Badge className="bg-amber-500 text-slate-950 font-black text-[10px] uppercase tracking-wider">
                       ★ LEAD DISPATCH
@@ -279,8 +279,8 @@ export function PublicPortalPage() {
                       {heroNews.category_tag || "State Championship"}
                     </Badge>
                   </div>
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] text-slate-300">
-                    <span className="flex items-center gap-1 font-semibold text-emerald-400">
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] text-white">
+                    <span className="flex items-center gap-1 font-semibold text-white">
                       <Radio className="size-3 animate-ping" /> CERTIFIED SCORELINE
                     </span>
                     <span>Sawai Mansingh Stadium</span>
@@ -328,13 +328,13 @@ export function PublicPortalPage() {
             </div>
 
             {/* Sport Selector Pill Buttons */}
-            <div className="flex items-center p-1.5 rounded-xl bg-slate-900 border border-slate-800 shrink-0">
+            <div className="flex items-center p-1.5 rounded-md bg-card border border-border shadow-sm shrink-0">
               <button
                 onClick={() => setActiveSportId(1)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-black transition-all ${
                   activeSportId === 1
-                    ? "bg-emerald-600 text-slate-950 shadow-md shadow-emerald-950"
-                    : "text-slate-400 hover:text-white"
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-primary"
                 }`}
               >
                 <Zap className="size-3.5" /> Sepak Takraw (Regu)
@@ -343,8 +343,8 @@ export function PublicPortalPage() {
                 onClick={() => setActiveSportId(2)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-black transition-all ${
                   activeSportId === 2
-                    ? "bg-amber-500 text-slate-950 shadow-md shadow-amber-950"
-                    : "text-slate-400 hover:text-white"
+                    ? "bg-accent text-accent-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-primary"
                 }`}
               >
                 <Flame className="size-3.5" /> Aatya Paatya (Court)
@@ -710,7 +710,7 @@ export function PublicPortalPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {districtsShowcase.map((st) => (
-              <Card key={st.code} className="border-slate-800 bg-slate-900/60 hover:border-emerald-600/50 transition-colors">
+              <Card key={st.code} className="border-border bg-card hover:border-primary/40 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200">
                 <CardContent className="p-5 flex items-center gap-4">
                   <RstaCrest code={st.code} name={st.name} color="amber" />
                   <div className="space-y-1 min-w-0">
@@ -744,7 +744,7 @@ export function PublicPortalPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {news.map((item) => (
-              <Card key={item.id} className="border-slate-800 bg-slate-950 overflow-hidden shadow-lg group hover:border-emerald-600/50 transition-all flex flex-col">
+              <Card key={item.id} className="border-border bg-card overflow-hidden shadow-sm group hover:border-primary/40 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200 flex flex-col">
                 <div className="relative h-48 overflow-hidden">
                   <SafeImage
                     src={item.image_url || "/assets/news/gold-medal.jpg"}
@@ -809,7 +809,7 @@ export function PublicPortalPage() {
 
               <div className="space-y-3">
                 {notices.map((notice, idx) => (
-                  <Card key={notice.id} className="border-slate-800 bg-slate-900/60 hover:border-emerald-600/40 transition-colors">
+                  <Card key={notice.id} className="border-border bg-card hover:border-primary/40 hover:shadow-md transition-all duration-200">
                     <CardContent className="p-4 space-y-2">
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
@@ -843,7 +843,7 @@ export function PublicPortalPage() {
 
               <div className="space-y-3">
                 {documents.map((doc) => (
-                  <Card key={doc.id} className="border-slate-800 bg-slate-900/60 hover:border-emerald-600/40 transition-colors">
+                  <Card key={doc.id} className="border-border bg-card hover:border-primary/40 hover:shadow-md transition-all duration-200">
                     <CardContent className="p-4 space-y-3">
                       <div className="flex items-start justify-between gap-2">
                         <div>
