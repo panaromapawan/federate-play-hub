@@ -270,7 +270,7 @@ export function PublicPortalPage() {
                     alt="RSTA Match Action"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/85 via-[#0f172a]/25 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/45 to-transparent" />
                   <div className="absolute top-3 left-3 flex items-center gap-2">
                     <Badge className="bg-amber-500 text-slate-950 font-black text-[10px] uppercase tracking-wider">
                       ★ LEAD DISPATCH
@@ -279,7 +279,7 @@ export function PublicPortalPage() {
                       {heroNews.category_tag || "State Championship"}
                     </Badge>
                   </div>
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] text-white">
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-semibold text-white">
                     <span className="flex items-center gap-1 font-semibold text-white">
                       <Radio className="size-3 animate-ping" /> CERTIFIED SCORELINE
                     </span>
