@@ -232,7 +232,7 @@ export function PublicPortalPage() {
               </div>
 
               {/* Stat Ticker */}
-              <div className="grid grid-cols-3 gap-3 py-3 border-y border-emerald-950/80 bg-slate-900/50 backdrop-blur-sm rounded-xl px-4">
+              <div className="grid grid-cols-3 gap-3 py-4 border border-border bg-card shadow-sm rounded-md px-5">
                 <div className="space-y-0.5">
                   <div className="text-xl sm:text-2xl font-black text-white font-mono">33</div>
                   <div className="text-[11px] text-slate-400 uppercase font-semibold">Districts Affiliated</div>
@@ -249,13 +249,13 @@ export function PublicPortalPage() {
 
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link to="/auth">
-                  <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-black px-6 gap-2 text-sm shadow-xl shadow-emerald-950 border border-emerald-400/40">
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-6 gap-2 text-sm shadow-md">
                     <Shield className="size-4" /> {settings?.hero_cta_primary_text || "Official Federation Portal"}
                   </Button>
                 </Link>
                 <Link to="/competitions">
-                  <Button size="lg" variant="outline" className="border-slate-700 bg-slate-900/80 hover:bg-slate-800 text-slate-200 text-sm font-bold gap-2">
-                    <Trophy className="size-4 text-amber-400" /> State Championship Arena
+                  <Button size="lg" variant="outline" className="border-border bg-card hover:bg-secondary text-foreground text-sm font-bold gap-2">
+                    <Trophy className="size-4 text-accent" /> State Championship Arena
                   </Button>
                 </Link>
               </div>
@@ -263,14 +263,14 @@ export function PublicPortalPage() {
 
             {/* Right: Featured Hero Dispatch Card */}
             <div className="lg:col-span-5 animate-editorial-rise animation-delay-150">
-              <Card className="overflow-hidden border-emerald-900/50 bg-slate-900/90 shadow-2xl backdrop-blur group">
+              <Card className="overflow-hidden border-border bg-card shadow-md group">
                 <div className="relative h-56 sm:h-64 overflow-hidden">
                   <SafeImage
                     src={heroNews.image_url || "/assets/news/gold-medal.jpg"}
                     alt="RSTA Match Action"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/45 to-transparent" />
                   <div className="absolute top-3 left-3 flex items-center gap-2">
                     <Badge className="bg-amber-500 text-slate-950 font-black text-[10px] uppercase tracking-wider">
                       ★ LEAD DISPATCH
@@ -279,8 +279,8 @@ export function PublicPortalPage() {
                       {heroNews.category_tag || "State Championship"}
                     </Badge>
                   </div>
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] text-slate-300">
-                    <span className="flex items-center gap-1 font-semibold text-emerald-400">
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] font-semibold text-white">
+                    <span className="flex items-center gap-1 font-semibold text-white">
                       <Radio className="size-3 animate-ping" /> CERTIFIED SCORELINE
                     </span>
                     <span>Sawai Mansingh Stadium</span>
@@ -328,13 +328,13 @@ export function PublicPortalPage() {
             </div>
 
             {/* Sport Selector Pill Buttons */}
-            <div className="flex items-center p-1.5 rounded-xl bg-slate-900 border border-slate-800 shrink-0">
+            <div className="flex items-center p-1.5 rounded-md bg-card border border-border shadow-sm shrink-0">
               <button
                 onClick={() => setActiveSportId(1)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-black transition-all ${
                   activeSportId === 1
-                    ? "bg-emerald-600 text-slate-950 shadow-md shadow-emerald-950"
-                    : "text-slate-400 hover:text-white"
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-primary"
                 }`}
               >
                 <Zap className="size-3.5" /> Sepak Takraw (Regu)
@@ -343,8 +343,8 @@ export function PublicPortalPage() {
                 onClick={() => setActiveSportId(2)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-black transition-all ${
                   activeSportId === 2
-                    ? "bg-amber-500 text-slate-950 shadow-md shadow-amber-950"
-                    : "text-slate-400 hover:text-white"
+                    ? "bg-accent text-accent-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-primary"
                 }`}
               >
                 <Flame className="size-3.5" /> Aatya Paatya (Court)
@@ -452,10 +452,10 @@ export function PublicPortalPage() {
 
             {/* Right: Certified Match Showcase Card (5 Cols) */}
             <div className="lg:col-span-5 space-y-4">
-              <Card className="border-emerald-700/60 bg-gradient-to-b from-slate-900 to-slate-950 shadow-2xl overflow-hidden relative">
-                <div className="absolute top-0 right-0 transform translate-x-4 -translate-y-4 size-32 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
+              <Card className="border-border bg-card shadow-md overflow-hidden relative">
+                <div className="absolute top-0 right-0 transform translate-x-4 -translate-y-4 size-32 bg-primary/5 rounded-full blur-2xl pointer-events-none" />
 
-                <CardHeader className="p-4 bg-emerald-950/50 border-b border-emerald-900/60 flex flex-row items-center justify-between">
+                <CardHeader className="p-4 bg-secondary border-b border-border flex flex-row items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="size-2 rounded-full bg-emerald-400 animate-ping" />
                     <span className="text-xs font-black uppercase tracking-wider text-emerald-300">
@@ -469,7 +469,7 @@ export function PublicPortalPage() {
 
                 <CardContent className="p-6 space-y-6">
                   {/* Scoreboard Arena */}
-                  <div className="grid grid-cols-7 items-center gap-2 text-center py-4 bg-slate-950/70 rounded-xl border border-slate-800">
+                  <div className="grid grid-cols-7 items-center gap-2 text-center py-4 bg-secondary/60 rounded-md border border-border">
                     {/* Team 1 */}
                     <div className="col-span-3 flex flex-col items-center space-y-2">
                       <RstaCrest code="RJ" name="Rajasthan" color="amber" />
@@ -523,7 +523,7 @@ export function PublicPortalPage() {
                     </div>
                   </div>
 
-                  <div className="p-3 rounded-lg bg-emerald-950/30 border border-emerald-900/50 text-[11px] text-slate-300 leading-relaxed flex items-start gap-2">
+                  <div className="p-3 rounded-md bg-secondary/70 border border-border text-[11px] text-foreground leading-relaxed flex items-start gap-2">
                     <Lock className="size-4 text-emerald-400 shrink-0 mt-0.5" />
                     <span>
                       <strong>Cryptographic Invariant INV-09:</strong> This match scorecard has been verified by the National Scorer and dual-certified by RSTA President Shri T. K. Singh.
@@ -562,10 +562,10 @@ export function PublicPortalPage() {
                   key={exec.id || exec.name}
                   className={`overflow-hidden transition-all duration-300 relative group flex flex-col justify-between ${
                     isPresident
-                      ? "border-amber-500/70 bg-gradient-to-b from-amber-950/20 via-slate-900/95 to-slate-950 shadow-[0_0_30px_rgba(245,158,11,0.15)] ring-1 ring-amber-500/30"
+                      ? "border-accent/60 bg-card shadow-md ring-1 ring-accent/25"
                       : isHeadCoach
-                      ? "border-emerald-500/60 bg-gradient-to-b from-emerald-950/20 via-slate-900/95 to-slate-950 shadow-[0_0_25px_rgba(16,185,129,0.12)]"
-                      : "border-slate-800 bg-slate-950 hover:border-emerald-600/50 shadow-lg"
+                      ? "border-primary/40 bg-card shadow-md"
+                      : "border-border bg-card hover:border-primary/40 shadow-sm"
                   }`}
                 >
                   <div>
@@ -575,7 +575,7 @@ export function PublicPortalPage() {
                         alt={exec.name}
                         className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/10 to-transparent" />
                       
                       {/* Top Prestige Tag */}
                       <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between">
@@ -640,7 +640,7 @@ export function PublicPortalPage() {
           </div>
 
           {/* Three-Tier Architecture Callout */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-b from-slate-950 to-slate-900 border border-emerald-900/60 shadow-xl space-y-6">
+          <div className="p-6 sm:p-8 rounded-md bg-card border border-border shadow-sm space-y-6">
             <div className="border-b border-slate-800 pb-4">
               <h3 className="text-lg font-black text-white flex items-center gap-2">
                 <Scale className="size-5 text-emerald-400" /> Three-Tier Jurisdictional Framework
@@ -651,7 +651,7 @@ export function PublicPortalPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-5 rounded-xl bg-slate-950/80 border border-amber-500/30 space-y-2">
+              <div className="p-5 rounded-md bg-secondary/50 border border-border space-y-2">
                 <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/40 text-xs font-mono">
                   LEVEL 1: NATIONAL APEX
                 </Badge>
@@ -661,7 +661,7 @@ export function PublicPortalPage() {
                 </p>
               </div>
 
-              <div className="p-5 rounded-xl bg-slate-950/80 border border-emerald-500/30 space-y-2">
+              <div className="p-5 rounded-md bg-secondary/50 border border-border space-y-2">
                 <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 text-xs font-mono">
                   LEVEL 2: STATE APEX
                 </Badge>
@@ -671,7 +671,7 @@ export function PublicPortalPage() {
                 </p>
               </div>
 
-              <div className="p-5 rounded-xl bg-slate-950/80 border border-blue-500/30 space-y-2">
+              <div className="p-5 rounded-md bg-secondary/50 border border-border space-y-2">
                 <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/40 text-xs font-mono">
                   LEVEL 3: GRASSROOTS
                 </Badge>
@@ -710,7 +710,7 @@ export function PublicPortalPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {districtsShowcase.map((st) => (
-              <Card key={st.code} className="border-slate-800 bg-slate-900/60 hover:border-emerald-600/50 transition-colors">
+              <Card key={st.code} className="border-border bg-card hover:border-primary/40 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200">
                 <CardContent className="p-5 flex items-center gap-4">
                   <RstaCrest code={st.code} name={st.name} color="amber" />
                   <div className="space-y-1 min-w-0">
@@ -744,7 +744,7 @@ export function PublicPortalPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {news.map((item) => (
-              <Card key={item.id} className="border-slate-800 bg-slate-950 overflow-hidden shadow-lg group hover:border-emerald-600/50 transition-all flex flex-col">
+              <Card key={item.id} className="border-border bg-card overflow-hidden shadow-sm group hover:border-primary/40 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200 flex flex-col">
                 <div className="relative h-48 overflow-hidden">
                   <SafeImage
                     src={item.image_url || "/assets/news/gold-medal.jpg"}
@@ -809,7 +809,7 @@ export function PublicPortalPage() {
 
               <div className="space-y-3">
                 {notices.map((notice, idx) => (
-                  <Card key={notice.id} className="border-slate-800 bg-slate-900/60 hover:border-emerald-600/40 transition-colors">
+                  <Card key={notice.id} className="border-border bg-card hover:border-primary/40 hover:shadow-md transition-all duration-200">
                     <CardContent className="p-4 space-y-2">
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
@@ -843,7 +843,7 @@ export function PublicPortalPage() {
 
               <div className="space-y-3">
                 {documents.map((doc) => (
-                  <Card key={doc.id} className="border-slate-800 bg-slate-900/60 hover:border-emerald-600/40 transition-colors">
+                  <Card key={doc.id} className="border-border bg-card hover:border-primary/40 hover:shadow-md transition-all duration-200">
                     <CardContent className="p-4 space-y-3">
                       <div className="flex items-start justify-between gap-2">
                         <div>
