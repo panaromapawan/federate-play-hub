@@ -89,8 +89,8 @@ function AuthPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4">
-      <Card className="w-full max-w-md border-border/60 bg-card/80 backdrop-blur">
+    <div className="flex min-h-screen items-center justify-center bg-background px-4 py-12">
+      <Card className="w-full max-w-md border-border bg-card shadow-floodlit">
         <CardHeader className="text-center">
           <div className="mx-auto mb-2 flex size-14 items-center justify-center rounded-full bg-primary/10">
             <Trophy className="size-7 text-primary" />
@@ -131,14 +131,14 @@ function AuthPage() {
                 <span>{result.message}</span>
               </div>
             )}
-            <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold" disabled={loading}>
+            <Button type="submit" className="w-full font-bold" disabled={loading}>
               {loading ? "Authenticating Session…" : "Sign In to Federation Console"}
             </Button>
           </form>
 
           {/* Quick Demo Credentials */}
-          <div className="mt-6 pt-5 border-t border-slate-800 space-y-2.5">
-            <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider block text-center">
+          <div className="mt-6 pt-5 border-t border-border space-y-2.5">
+            <span className="text-[11px] font-mono text-muted-foreground uppercase tracking-wider block text-center">
               Quick 1-Click Role Login:
             </span>
             <div className="grid grid-cols-2 gap-2">
@@ -148,7 +148,7 @@ function AuthPage() {
                   setEmail("nat@fed.in");
                   setPassword("password");
                 }}
-                className="text-[11px] text-left p-2 rounded-lg border border-slate-800 bg-slate-900/70 hover:border-amber-500/50 hover:bg-slate-900 transition-colors"
+                className="text-[11px] text-left p-2 rounded-lg border border-border bg-secondary/60 hover:border-accent hover:bg-secondary transition-colors"
               >
                 <div className="font-bold text-amber-400">National Admin</div>
                 <div className="text-slate-400 font-mono text-[10px]">nat@fed.in</div>
@@ -160,7 +160,7 @@ function AuthPage() {
                   setEmail("state.rj@fed.in");
                   setPassword("password");
                 }}
-                className="text-[11px] text-left p-2 rounded-lg border border-slate-800 bg-slate-900/70 hover:border-emerald-500/50 hover:bg-slate-900 transition-colors"
+                className="text-[11px] text-left p-2 rounded-lg border border-border bg-secondary/60 hover:border-success hover:bg-secondary transition-colors"
               >
                 <div className="font-bold text-emerald-400">State Admin (RJ)</div>
                 <div className="text-slate-400 font-mono text-[10px]">state.rj@fed.in</div>
@@ -172,7 +172,7 @@ function AuthPage() {
                   setEmail("dist.jdh@fed.in");
                   setPassword("password");
                 }}
-                className="text-[11px] text-left p-2 rounded-lg border border-slate-800 bg-slate-900/70 hover:border-blue-500/50 hover:bg-slate-900 transition-colors"
+                className="text-[11px] text-left p-2 rounded-lg border border-border bg-secondary/60 hover:border-primary hover:bg-secondary transition-colors"
               >
                 <div className="font-bold text-blue-400">District Admin (JDH)</div>
                 <div className="text-slate-400 font-mono text-[10px]">dist.jdh@fed.in</div>
@@ -184,13 +184,13 @@ function AuthPage() {
                   setEmail("official.1@fed.in");
                   setPassword("password");
                 }}
-                className="text-[11px] text-left p-2 rounded-lg border border-slate-800 bg-slate-900/70 hover:border-purple-500/50 hover:bg-slate-900 transition-colors"
+                className="text-[11px] text-left p-2 rounded-lg border border-border bg-secondary/60 hover:border-primary hover:bg-secondary transition-colors"
               >
                 <div className="font-bold text-purple-400">Match Official</div>
                 <div className="text-slate-400 font-mono text-[10px]">official.1@fed.in</div>
               </button>
             </div>
-            <p className="text-[10px] text-center text-slate-400">Password for all test roles: <code className="text-amber-400">password</code></p>
+            <p className="text-[10px] text-center text-muted-foreground">Password for all test roles: <code className="text-accent">password</code></p>
           </div>
         </CardContent>
       </Card>
@@ -210,8 +210,8 @@ function StatusScreen({
   action: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen items-center justify-center px-4">
-      <Card className="w-full max-w-md border-border/60 bg-card/80 text-center backdrop-blur">
+    <div className="flex min-h-screen items-center justify-center bg-background px-4 py-12">
+      <Card className="w-full max-w-md border-border bg-card text-center shadow-floodlit">
         <CardHeader>
           <div className="mx-auto mb-2">{icon}</div>
           <CardTitle className="text-xl">{title}</CardTitle>

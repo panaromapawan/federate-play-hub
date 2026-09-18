@@ -48,20 +48,20 @@ export function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 selection:bg-emerald-500 selection:text-black">
+    <div className="min-h-screen flex flex-col bg-background text-foreground selection:bg-accent selection:text-accent-foreground">
       <SEOHead title="Contact RSTA Secretariat | Sawai Mansingh Stadium, Jaipur" />
       <PublicNav />
 
       {/* Header */}
-      <section className="py-20 border-b border-emerald-950/80 bg-slate-950">
+      <section className="py-20 border-b border-border bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <Badge className="bg-emerald-950 text-emerald-300 border-emerald-800 text-xs px-3 py-1 font-mono">
+          <Badge className="bg-primary text-primary-foreground border-primary text-xs px-3 py-1 font-mono">
             RSTA SECRETARIAT & COACHING ACADEMY DESK
           </Badge>
-          <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase">
+          <h1 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight uppercase">
             Contact RSTA Secretariat
           </h1>
-          <p className="text-sm sm:text-base text-slate-300 max-w-3xl leading-relaxed">
+          <p className="text-sm sm:text-base text-muted-foreground max-w-3xl leading-relaxed">
             Statutory disclosures, district affiliation queries, player trial registrations, and technical communications for the <strong>Rajasthan Sepak Takraw Association</strong>.
           </p>
         </div>

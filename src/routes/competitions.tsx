@@ -51,29 +51,29 @@ export function CompetitionsPage() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 selection:bg-emerald-500 selection:text-black">
+    <div className="min-h-screen flex flex-col bg-background text-foreground selection:bg-accent selection:text-accent-foreground">
       <SEOHead title="RSTA Tournaments & Standings | Sepak Takraw & Aatya Paatya" />
       <PublicNav />
 
       {/* Hero Header */}
-      <section className="relative py-20 border-b border-emerald-950/80 bg-slate-950 overflow-hidden">
+      <section className="relative py-20 border-b border-border bg-background overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-25">
           <SafeImage
             src="/assets/hero/stadium-arena.jpg"
             alt="RSTA Arena"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-950" />
+          <div className="absolute inset-0 bg-linear-to-r from-background via-background/90 to-background/60" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <Badge className="bg-emerald-950 text-emerald-300 border-emerald-800 text-xs px-3 py-1 font-mono">
+          <Badge className="bg-primary text-primary-foreground border-primary text-xs px-3 py-1 font-mono">
             RSTA TOURNAMENT ARENA & LIVE SCORECARD
           </Badge>
-          <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase">
+          <h1 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight uppercase">
             Championships & Live Standings
           </h1>
-          <p className="text-sm sm:text-base text-slate-300 max-w-3xl leading-relaxed">
+          <p className="text-sm sm:text-base text-muted-foreground max-w-3xl leading-relaxed">
             Official standings, certified match scorecards, and roll of honor for <strong>Sepak Takraw</strong> (Regu, Doubles, Team) and <strong>Aatya Paatya</strong> state tournaments.
           </p>
         </div>
