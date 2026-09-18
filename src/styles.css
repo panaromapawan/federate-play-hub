@@ -54,57 +54,55 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --shadow-floodlit: 0 24px 60px -24px oklch(0.05 0.03 240 / 0.85);
-  --background-image-pitch:
-    radial-gradient(120% 80% at 50% -10%, oklch(0.32 0.09 172 / 0.5), transparent 60%),
-    linear-gradient(180deg, oklch(0.16 0.03 235), oklch(0.13 0.025 240));
+  --font-display: "Libre Baskerville", ui-serif, Georgia, serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --shadow-floodlit: 0 18px 45px -24px oklch(0.26 0.07 260 / 0.24);
+  --background-image-pitch: none;
 }
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(0.15 0.028 238);
-  --foreground: oklch(0.97 0.006 240);
-  --card: oklch(0.196 0.03 238);
-  --card-foreground: oklch(0.97 0.006 240);
-  --popover: oklch(0.196 0.03 238);
-  --popover-foreground: oklch(0.97 0.006 240);
-  --primary: oklch(0.78 0.19 152);
-  --primary-foreground: oklch(0.17 0.04 160);
-  --secondary: oklch(0.26 0.035 238);
-  --secondary-foreground: oklch(0.95 0.008 240);
-  --muted: oklch(0.24 0.03 238);
-  --muted-foreground: oklch(0.7 0.02 240);
-  --accent: oklch(0.8 0.16 82);
-  --accent-foreground: oklch(0.2 0.05 70);
-  --destructive: oklch(0.62 0.22 22);
-  --destructive-foreground: oklch(0.98 0.005 240);
-  --success: oklch(0.72 0.17 155);
-  --success-foreground: oklch(0.17 0.04 160);
-  --warning: oklch(0.82 0.15 78);
-  --warning-foreground: oklch(0.2 0.05 70);
-  --border: oklch(0.32 0.03 238);
-  --input: oklch(0.3 0.03 238);
-  --ring: oklch(0.78 0.19 152);
-  --chart-1: oklch(0.78 0.19 152);
-  --chart-2: oklch(0.8 0.16 82);
-  --chart-3: oklch(0.66 0.14 232);
-  --chart-4: oklch(0.62 0.22 22);
-  --chart-5: oklch(0.85 0.05 240);
-  --sidebar: oklch(0.18 0.03 238);
-  --sidebar-foreground: oklch(0.95 0.008 240);
-  --sidebar-primary: oklch(0.78 0.19 152);
-  --sidebar-primary-foreground: oklch(0.17 0.04 160);
-  --sidebar-accent: oklch(0.26 0.035 238);
-  --sidebar-accent-foreground: oklch(0.95 0.008 240);
-  --sidebar-border: oklch(0.32 0.03 238);
-  --sidebar-ring: oklch(0.78 0.19 152);
+  --background: oklch(0.984 0.004 247);
+  --foreground: oklch(0.208 0.042 265);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.208 0.042 265);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.208 0.042 265);
+  --primary: oklch(0.34 0.13 264);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.96 0.012 250);
+  --secondary-foreground: oklch(0.34 0.13 264);
+  --muted: oklch(0.968 0.007 248);
+  --muted-foreground: oklch(0.49 0.032 256);
+  --accent: oklch(0.62 0.15 58);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.58 0.22 25);
+  --destructive-foreground: oklch(1 0 0);
+  --success: oklch(0.56 0.15 163);
+  --success-foreground: oklch(1 0 0);
+  --warning: oklch(0.7 0.15 70);
+  --warning-foreground: oklch(0.23 0.04 60);
+  --border: oklch(0.91 0.014 255);
+  --input: oklch(0.86 0.02 253);
+  --ring: oklch(0.34 0.13 264);
+  --chart-1: oklch(0.34 0.13 264);
+  --chart-2: oklch(0.62 0.15 58);
+  --chart-3: oklch(0.56 0.15 163);
+  --chart-4: oklch(0.58 0.22 25);
+  --chart-5: oklch(0.52 0.12 230);
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.208 0.042 265);
+  --sidebar-primary: oklch(0.34 0.13 264);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.96 0.012 250);
+  --sidebar-accent-foreground: oklch(0.34 0.13 264);
+  --sidebar-border: oklch(0.91 0.014 255);
+  --sidebar-ring: oklch(0.34 0.13 264);
 }
 
 .dark {
-  --background: oklch(0.15 0.028 238);
-  --foreground: oklch(0.97 0.006 240);
+  --background: oklch(0.984 0.004 247);
+  --foreground: oklch(0.208 0.042 265);
 }
 
 @layer base {
@@ -146,28 +144,27 @@
   color: var(--muted-foreground);
 }
 
-/* Public homepage — Royal Apex light editorial theme. Scoped so operational
-   consoles and authenticated dashboards retain their existing appearance. */
+/* Royal Apex light editorial theme — shared by every public and operational screen. */
 .public-home-light {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --card: #ffffff;
-  --card-foreground: #0f172a;
-  --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  --primary: #1e3a8a;
-  --primary-foreground: #ffffff;
-  --secondary: #eef2f7;
-  --secondary-foreground: #1e3a8a;
-  --muted: #f1f5f9;
-  --muted-foreground: #5b677a;
-  --accent: #d97706;
-  --accent-foreground: #ffffff;
-  --success: #059669;
-  --success-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: #cbd5e1;
-  --ring: #1e3a8a;
+  --background: oklch(0.984 0.004 247);
+  --foreground: oklch(0.208 0.042 265);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.208 0.042 265);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.208 0.042 265);
+  --primary: oklch(0.34 0.13 264);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.96 0.012 250);
+  --secondary-foreground: oklch(0.34 0.13 264);
+  --muted: oklch(0.968 0.007 248);
+  --muted-foreground: oklch(0.49 0.032 256);
+  --accent: oklch(0.62 0.15 58);
+  --accent-foreground: oklch(1 0 0);
+  --success: oklch(0.56 0.15 163);
+  --success-foreground: oklch(1 0 0);
+  --border: oklch(0.91 0.014 255);
+  --input: oklch(0.86 0.02 253);
+  --ring: oklch(0.34 0.13 264);
   background: var(--background);
   color: var(--foreground);
   font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
@@ -236,6 +233,24 @@
   color: var(--accent) !important;
 }
 
+.public-home-light [class*="text-blue-3"],
+.public-home-light [class*="text-blue-4"],
+.public-home-light [class*="text-purple-3"],
+.public-home-light [class*="text-purple-4"] {
+  color: var(--primary) !important;
+}
+
+.public-home-light [class*="text-rose-3"],
+.public-home-light [class*="text-rose-4"] {
+  color: var(--destructive) !important;
+}
+
+.public-home-light main [class*="from-emerald-950"],
+.public-home-light main [class*="from-slate-9"] {
+  background-color: var(--card) !important;
+  background-image: none !important;
+}
+
 .public-home-light [data-slot="card"],
 .public-home-light .rounded-2xl {
   border-color: var(--border) !important;
@@ -263,6 +278,22 @@
 
 .public-home-light a:hover {
   color: var(--primary);
+}
+
+.public-home-light main > section,
+.public-home-light main > div,
+.public-home-light [data-slot="card"] {
+  animation: editorial-rise 0.55s ease-out both;
+}
+
+.public-home-light [data-slot="card"] {
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+
+.public-home-light [data-slot="card"]:hover {
+  border-color: color-mix(in oklab, var(--primary) 24%, var(--border)) !important;
+  box-shadow: 0 14px 32px -22px color-mix(in oklab, var(--primary) 35%, transparent) !important;
+  transform: translateY(-2px);
 }
 
 .animate-editorial-rise {

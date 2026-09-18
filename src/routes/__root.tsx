@@ -117,7 +117,7 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="public-home-light">
         {children}
         <Scripts />
       </body>
