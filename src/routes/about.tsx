@@ -56,29 +56,29 @@ export function AboutPage() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 selection:bg-emerald-500 selection:text-black">
+    <div className="min-h-screen flex flex-col bg-background text-foreground selection:bg-accent selection:text-accent-foreground">
       <SEOHead title="About RSTA | Rajasthan Sepak Takraw Association" />
       <PublicNav />
 
       {/* Hero Banner */}
-      <section className="relative py-20 border-b border-emerald-950/80 bg-slate-950 overflow-hidden">
+      <section className="relative py-20 border-b border-border bg-background overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-30">
           <SafeImage
             src="/assets/hero/stadium-arena.jpg"
             alt="RSTA Arena"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-950" />
+          <div className="absolute inset-0 bg-linear-to-r from-background via-background/90 to-background/60" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <Badge className="bg-emerald-950 text-emerald-300 border-emerald-800 text-xs px-3 py-1 font-mono">
+          <Badge className="bg-primary text-primary-foreground border-primary text-xs px-3 py-1 font-mono">
             ORGANIZATIONAL CHARTER & DUAL-SPORT CONSTITUTION
           </Badge>
-          <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase">
+          <h1 className="text-3xl sm:text-5xl font-black text-foreground tracking-tight uppercase">
             About Rajasthan Sepak Takraw Association
           </h1>
-          <p className="text-sm sm:text-base text-slate-300 max-w-3xl leading-relaxed">
+          <p className="text-sm sm:text-base text-muted-foreground max-w-3xl leading-relaxed">
             The Rajasthan Sepak Takraw Association (RSTA) is the apex state governing authority affiliated with the Sepaktakraw Federation of India (STFI) and recognized by the Rajasthan State Sports Council (RSSC). Presided over by <strong>Shri T. K. Singh</strong> (NIS), RSTA governs competitive <strong>Sepak Takraw</strong> and indigenous <strong>Aatya Paatya</strong> across all 33 districts of Rajasthan.
           </p>
         </div>
@@ -155,17 +155,17 @@ export function AboutPage() {
         </section>
 
         {/* Callout */}
-        <div className="p-8 rounded-2xl bg-gradient-to-r from-emerald-950/80 via-slate-900 to-slate-950 border border-emerald-800/60 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="p-8 rounded-lg bg-secondary border border-border flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
           <div className="space-y-2 max-w-xl">
-            <h3 className="text-xl font-black text-white">
+            <h3 className="text-xl font-black text-foreground">
               Sawai Mansingh Stadium Headquarters
             </h3>
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <p className="text-xs text-muted-foreground leading-relaxed">
               Visit our state coaching secretariat at Sawai Mansingh Stadium, Jaipur. Access player verification clinics, coach accreditation schedules, and tournament bids.
             </p>
           </div>
           <Link to="/contact">
-            <Button className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs gap-2 shrink-0">
+            <Button className="font-bold text-xs gap-2 shrink-0">
               Contact RSTA Secretariat <ArrowRight className="size-3.5" />
             </Button>
           </Link>

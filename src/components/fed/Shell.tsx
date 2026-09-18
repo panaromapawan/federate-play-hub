@@ -39,8 +39,8 @@ export function Shell({
   }
 
   return (
-    <div className="min-h-screen">
-      <header className="border-b border-border/70 bg-card/60 backdrop-blur">
+    <div className="min-h-screen bg-background text-foreground">
+      <header className="sticky top-0 z-40 border-b border-border bg-card/95 shadow-sm backdrop-blur">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-4 px-4 py-4 sm:px-6">
           <Trophy className="size-6 text-primary" aria-hidden />
           <div className="mr-auto">
