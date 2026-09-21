@@ -133,3 +133,24 @@ export async function callProc<T = Record<string, unknown>>(
     return toInvariant(error);
   }
 }
+
+/** Invoke a stored procedure returning multiple result sets. Throws InvariantError for SQLSTATE 45000. */
+export async function callProcMulti<T1 = Record<string, unknown>, T2 = Record<string, unknown>, T3 = Record<string, unknown>>(
+  name: string,
+  params: unknown[],
+): Promise<[T1[], T2[], T3[]]> {
+  const placeholders = params.map(() => "?").join(", ");
+  try {
+    const [result] = await getPool().query(`CALL ${name}(${placeholders})`, params);
+    const sets = result as unknown[];
+    if (Array.isArray(sets)) {
+      const r1 = (Array.isArray(sets[0]) ? sets[0] : []) as T1[];
+      const r2 = (Array.isArray(sets[1]) ? sets[1] : []) as T2[];
+      const r3 = (Array.isArray(sets[2]) ? sets[2] : []) as T3[];
+      return [r1, r2, r3];
+    }
+    return [[], [], []];
+  } catch (error) {
+    return toInvariant(error);
+  }
+}

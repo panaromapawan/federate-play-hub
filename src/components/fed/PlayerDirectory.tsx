@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,23 +11,35 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { getPlayers, registerPlayer } from "@/lib/federation.functions";
+import { registerPlayer } from "@/lib/federation.functions";
+import { listPlayers, type PlayerRow } from "@/lib/tables.functions";
+import { DataTable, type ColumnDef } from "./DataTable";
 import { useProcedure } from "./useAction";
 
 export function PlayerDirectory({ canRegister }: { canRegister: boolean }) {
-  const { data = [], isLoading } = useQuery({ queryKey: ["players"], queryFn: () => getPlayers() });
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [page, setPage] = useState(0);
+  const [pageSize, setPageSize] = useState(25);
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["players-paginated", search, statusFilter, page, pageSize],
+    queryFn: () =>
+      listPlayers({
+        data: {
+          search: search || undefined,
+          status: statusFilter === "all" ? undefined : statusFilter,
+          limit: pageSize,
+          offset: page * pageSize,
+        },
+      }),
+  });
+
+  // Player registration state
   const [fullName, setFullName] = useState("");
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState<"male" | "female" | "other">("male");
-  const mutation = useProcedure(registerPlayer, ["players"]);
+  const mutation = useProcedure(registerPlayer, ["players", "players-paginated"]);
 
   async function submit() {
     const result = await mutation.mutateAsync({ data: { fullName, dob, gender } } as never);
@@ -38,83 +49,147 @@ export function PlayerDirectory({ canRegister }: { canRegister: boolean }) {
     }
   }
 
-  return (
-    <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
-      <section className="panel p-5">
-        <h2 className="text-base font-bold">Player directory</h2>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Grassroots athletes registered inside your jurisdiction.
-        </p>
-        <div className="mt-4 overflow-x-auto">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Player</TableHead>
-                <TableHead>Date of birth</TableHead>
-                <TableHead>Gender</TableHead>
-                <TableHead>District</TableHead>
-                <TableHead>Status</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {isLoading ? (
-                <TableRow>
-                  <TableCell colSpan={5} className="text-muted-foreground">
-                    Loading players…
-                  </TableCell>
-                </TableRow>
-              ) : data.length === 0 ? (
-                <TableRow>
-                  <TableCell colSpan={5} className="text-muted-foreground">
-                    No players registered yet.
-                  </TableCell>
-                </TableRow>
-              ) : (
-                data.map((player) => (
-                  <TableRow key={player.id}>
-                    <TableCell className="font-medium">{player.full_name ?? "—"}</TableCell>
-                    <TableCell>{player.dob ?? "—"}</TableCell>
-                    <TableCell className="capitalize">{player.gender ?? "—"}</TableCell>
-                    <TableCell>{player.district_name ?? "—"}</TableCell>
-                    <TableCell>
-                      <Badge variant={player.status === "active" ? "default" : "secondary"}>
-                        {player.status ?? "unknown"}
-                      </Badge>
-                    </TableCell>
-                  </TableRow>
-                ))
-              )}
-            </TableBody>
-          </Table>
+  const columns: ColumnDef<PlayerRow>[] = [
+    {
+      header: "Player Name",
+      accessorKey: "name",
+      cell: (row) => (
+        <div>
+          <div className="font-medium text-foreground">{row.name}</div>
+          {row.playing_position && (
+            <div className="text-[10px] text-muted-foreground">{row.playing_position}</div>
+          )}
         </div>
-      </section>
+      ),
+    },
+    {
+      header: "DOB / Age",
+      accessorKey: "dob",
+      cell: (row) => (
+        <span className="font-mono text-muted-foreground">
+          {row.dob ? new Date(row.dob).toLocaleDateString() : "—"}
+        </span>
+      ),
+    },
+    {
+      header: "Gender",
+      accessorKey: "gender",
+      cell: (row) => (
+        <span className="capitalize">{row.gender === "M" ? "Male" : row.gender === "F" ? "Female" : row.gender}</span>
+      ),
+    },
+    {
+      header: "District / State",
+      cell: (row) => (
+        <span className="text-muted-foreground">
+          {[row.district_name, row.state_name].filter(Boolean).join(", ") || "—"}
+        </span>
+      ),
+    },
+    {
+      header: "Status",
+      accessorKey: "status",
+      cell: (row) => (
+        <Badge
+          variant={row.status === "active" ? "default" : "secondary"}
+          className="capitalize font-mono text-[10px]"
+        >
+          {row.status}
+        </Badge>
+      ),
+    },
+  ];
 
-      {canRegister ? (
-        <section className="panel h-fit p-5">
-          <h2 className="text-base font-bold">Register a player</h2>
-          <div className="mt-4 space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="player-name">Full name</Label>
+  return (
+    <div className={`grid gap-6 ${canRegister ? "lg:grid-cols-[1fr_320px]" : "grid-cols-1"}`}>
+      <div className="rounded-xl border border-border bg-card p-5 shadow-sm space-y-4">
+        <div>
+          <h2 className="font-serif text-lg font-bold">Player Registry</h2>
+          <p className="text-xs text-muted-foreground mt-0.5">
+            Grassroots athletes accredited and registered inside your federation jurisdiction.
+          </p>
+        </div>
+
+        <DataTable
+          columns={columns}
+          data={data?.rows ?? []}
+          total={data?.total ?? 0}
+          isLoading={isLoading}
+          page={page}
+          pageSize={pageSize}
+          onPageChange={setPage}
+          onPageSizeChange={(newSize) => {
+            setPageSize(newSize);
+            setPage(0);
+          }}
+          search={search}
+          onSearchChange={(val) => {
+            setSearch(val);
+            setPage(0);
+          }}
+          searchPlaceholder="Search player by name or position..."
+          filters={[
+            {
+              id: "status",
+              label: "Status",
+              value: statusFilter,
+              options: [
+                { label: "All Statuses", value: "all" },
+                { label: "Active", value: "active" },
+                { label: "Suspended", value: "suspended" },
+                { label: "Retired", value: "retired" },
+              ],
+              onChange: (v) => {
+                setStatusFilter(v);
+                setPage(0);
+              },
+            },
+          ]}
+          exportFilename="federation-players.csv"
+          emptyMessage="No athletes registered matching criteria."
+        />
+      </div>
+
+      {canRegister && (
+        <aside className="rounded-xl border border-border bg-card p-5 shadow-sm h-fit space-y-4">
+          <div>
+            <h3 className="font-serif text-base font-bold">Register New Athlete</h3>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              Add a new player to your grassroots district pool.
+            </p>
+          </div>
+
+          <form
+            className="space-y-3"
+            onSubmit={(e) => {
+              e.preventDefault();
+              void submit();
+            }}
+          >
+            <div className="space-y-1.5">
+              <Label className="text-xs">Full Name</Label>
               <Input
-                id="player-name"
                 value={fullName}
-                onChange={(event) => setFullName(event.target.value)}
-                placeholder="Anita Sharma"
+                onChange={(e) => setFullName(e.target.value)}
+                placeholder="e.g. Rahul Sharma"
+                required
+                className="h-9 text-xs"
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="player-dob">Date of birth</Label>
+            <div className="space-y-1.5">
+              <Label className="text-xs">Date of Birth</Label>
               <Input
-                id="player-dob"
                 type="date"
                 value={dob}
-                onChange={(event) => setDob(event.target.value)}
+                onChange={(e) => setDob(e.target.value)}
+                required
+                className="h-9 text-xs"
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="player-gender">Gender</Label>
-              <Select value={gender} onValueChange={(value) => setGender(value as typeof gender)}>
-                <SelectTrigger id="player-gender">
+            <div className="space-y-1.5">
+              <Label className="text-xs">Gender</Label>
+              <Select value={gender} onValueChange={(v) => setGender(v as typeof gender)}>
+                <SelectTrigger className="h-9 text-xs">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -125,15 +200,15 @@ export function PlayerDirectory({ canRegister }: { canRegister: boolean }) {
               </Select>
             </div>
             <Button
-              className="w-full"
-              disabled={fullName.trim().length < 2 || dob.length < 4 || mutation.isPending}
-              onClick={submit}
+              type="submit"
+              disabled={mutation.isPending || !fullName.trim() || !dob}
+              className="w-full text-xs font-semibold h-9 mt-2"
             >
-              Add to directory
+              {mutation.isPending ? "Registering…" : "Register Athlete"}
             </Button>
-          </div>
-        </section>
-      ) : null}
+          </form>
+        </aside>
+      )}
     </div>
   );
 }
