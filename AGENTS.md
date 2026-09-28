@@ -8,3 +8,7 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Project decisions
+
+- Use the Modern Institutional design system globally: Apple-neutral surfaces, orange primary actions, green status, Instrument Serif headings, and Work Sans UI text, because public and management screens must feel like one product.
